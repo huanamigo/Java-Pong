@@ -3,7 +3,8 @@ import java.awt.*;
 
 public class GameFrame extends JFrame {
     GamePanel panel;
-    GameFrame(){
+
+    GameFrame() {
         panel = new GamePanel();
         this.add(panel);
         this.setTitle("Pongchamp");

@@ -1,11 +1,12 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Paddle extends Rectangle{
+public class Paddle extends Rectangle {
     int id;
     int yVelocity;
     int speed = 10;
-    Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id){
+
+    Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id) {
 
         super(x, y, PADDLE_WIDTH, PADDLE_HEIGHT);
         this.id = id;
@@ -15,46 +16,47 @@ public class Paddle extends Rectangle{
     public void keyPressed(KeyEvent e) {
         switch (id) {
             case 1:
-                if(e.getKeyCode() == KeyEvent.VK_W){
+                if (e.getKeyCode() == KeyEvent.VK_W) {
                     setYDirection(-speed);
                     move();
                 }
-                if(e.getKeyCode() == KeyEvent.VK_S){
+                if (e.getKeyCode() == KeyEvent.VK_S) {
                     setYDirection(speed);
                     move();
                 }
                 break;
             case 2:
-                if(e.getKeyCode() == KeyEvent.VK_UP){
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
+                    move();
                     setYDirection(-speed);
-                    move();
                 }
-                if(e.getKeyCode() == KeyEvent.VK_DOWN){
-                    setYDirection(speed);
+                if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     move();
+                    setYDirection(speed);
                 }
                 break;
         }
     }
+
     public void keyReleased(KeyEvent e) {
 
         switch (id) {
             case 1:
-                if(e.getKeyCode() == KeyEvent.VK_W){
+                if (e.getKeyCode() == KeyEvent.VK_W && yVelocity == -speed) {
                     setYDirection(0);
                     move();
                 }
-                if(e.getKeyCode() == KeyEvent.VK_S){
+                if (e.getKeyCode() == KeyEvent.VK_S && yVelocity == speed) {
                     setYDirection(0);
                     move();
                 }
                 break;
             case 2:
-                if(e.getKeyCode() == KeyEvent.VK_UP){
+                if (e.getKeyCode() == KeyEvent.VK_UP && yVelocity == -speed) {
                     setYDirection(0);
                     move();
                 }
-                if(e.getKeyCode() == KeyEvent.VK_DOWN){
+                if (e.getKeyCode() == KeyEvent.VK_DOWN && yVelocity == speed) {
                     setYDirection(0);
                     move();
                 }
@@ -67,12 +69,14 @@ public class Paddle extends Rectangle{
         yVelocity = yDirection;
 
     }
+
     public void move() {
 
         y = y + yVelocity;
 
     }
-    public void draw(Graphics g){
+
+    public void draw(Graphics g) {
 
         if (id == 1) {
             g.setColor(Color.blue);
